@@ -219,7 +219,13 @@ void imprimirCodigoBarras(void) {
 }
 
 void imprimirXMLSAT(void) {
-    
+    if(!conexaoAberta) {
+        printf("Conexao fechada. Abra a conexao antes (opcao 2).\n");
+    } else {
+
+        
+
+    }
         /* le o arquivo XML (na raiz do projeto) para a memoria */
         //char *dadosXML = lerArquivo("XMLSAT.xml");
         
