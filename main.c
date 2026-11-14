@@ -105,7 +105,7 @@ static int carregarDLL(void) {
 
 /* ===================== Variaveis do programa ===================== */
 
-static int conexaoAberta = 0;       /* 0 = fechada, 1 = aberta */
+static int conexaoAberta = 1;       /* 0 = fechada, 1 = aberta */
 static int tipo = 1;                /* 1 = USB, 2 = Serial, 3 = Rede... */
 static char modelo[50] = "i9";      /* "i8" ou "i9" */
 static char conexao[50] = "USB";
@@ -194,16 +194,22 @@ void abrirConexao(void) {
 }
 
 void fecharConexao(void) {
-    if(conexaoAberta) {
+    if(conexaoAberta == 1) {
         int retorno = FechaConexaoImpressora();
+
         if(retorno == 0) {
+            conexaoAberta = 0;
             printf("Conexao fechada com sucesso.\n");
-        } else {
-            printf("Erro ao fechar a conexao.\n");
+            
+        } else if(retorno == 2) {
+            printf("Erro ao fechar a conexao. Codigo: %d\n", retorno);
+            
         }
+
     } else {
         printf("Conexao ja esta fechada.\n");
     }
+    
 }
 
 void imprimirTexto(void) {
@@ -221,17 +227,47 @@ void imprimirCodigoBarras(void) {
 void imprimirXMLSAT(void) {
     if(!conexaoAberta) {
         printf("Conexao fechada. Abra a conexao antes (opcao 2).\n");
-    } else {
-
-        
-
+        return;
     }
+    char *dadosXML = lerArquivo("XMLSAT.xml");
+    if(dadosXML == NULL) { //n encontrou o arquivo -- retorno vazio
+        printf("Nao foi possivel ler o XMLSAT.xml\n");
+        return;
+    }  
+    int retorno = ImprimeXMLSAT(dadosXML, 0);
+    Corte(5);
+    free(dadosXML); //apaga o arquivo da memória do sistema
+
+    if(retorno == 0) {
+        printf("XML SAT impresso!\n");
+    } else {
+        printf("Erro ao imprimir XML SAT. Codigo: %d\n", retorno);
+    }
+
         /* le o arquivo XML (na raiz do projeto) para a memoria */
         //char *dadosXML = lerArquivo("XMLSAT.xml");
         
 }
 
 void imprimirXMLCancelamentoSAT(void) {
+    if(!conexaoAberta) {
+        printf("Conexao fechada. Abra a conexao antes (opcao 2).\n");
+        return;
+    }
+    char *dadosXML = lerArquivo("CANC_SAT.xml");
+    if(dadosXML == NULL) { //n encontrou o arquivo -- retorno vazio
+        printf("Nao foi possivel ler o CANC_SAT.xml\n");
+        return;
+    }  
+    int retorno = ImprimeXMLCancelamentoSAT(dadosXML, ASS_QRCODE, 0);
+    Corte(5);
+    free(dadosXML); //apaga o arquivo da memória do sistema
+
+    if(retorno == 0) {
+        printf("XML - Cancelamento impresso!\n");
+    } else {
+        printf("Erro ao imprimir XML - Cancelamento. Codigo: %d\n", retorno);
+    }
     	
     	/* le o arquivo XML (na raiz do projeto) para a memoria */
         //char *dadosXML = lerArquivo("CANC_SAT.xml");
