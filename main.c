@@ -337,15 +337,42 @@ void exibirMenu(void) {
     printf("--------------------------------------\n");
 }
 
-void fazerlogin() {
-    /*Pede usuário e senha, 3 tentativas.
-    Devolve 1 se acertar e 0 se errar as 3.
-    Usuário admin, senha 1234.*/
+int fazerlogin(void) {
+    char usuario[50];
+    char senha[50];
+
+    for (int tentativa = 1; tentativa <= 3; tentativa++) {
+
+        printf("\n========== SISTEMA DE LOGIN ==========\n");
+
+        capturarEntrada("Usuario: ", usuario, sizeof(usuario));
+        capturarEntrada("Senha: ", senha, sizeof(senha));
+
+        if (strcmp(usuario, "admin") == 0 &&
+            strcmp(senha, "1234") == 0) {
+
+            printf("\nLogin realizado com sucesso!\n");
+            return 1;
+
+        } else {
+            printf("\nUsuario ou senha incorretos!\n");
+            printf("Tentativas restantes: %d\n", 3 - tentativa);
+        }
+    }
+
+    printf("\nAcesso bloqueado! Numero maximo de tentativas excedido.\n");
+
+    return 0;
 }
 
 /* ===================== Programa principal ===================== */
 
 int main(void) {
+    if (!fazerlogin()) {
+        printf("Programa encerrado por falta de autenticacao.\n");
+        return 0;
+    }
+
     if (!carregarDLL()) {
         printf("Programa encerrado.\n");
         return 1;
