@@ -195,13 +195,13 @@ void abrirConexao(void) {
 
 void fecharConexao(void) {
     if(conexaoAberta == 1) {
-        int retorno = FechaConexaoImpressora();
+
+        int retorno = conexaoAberta = 0;
 
         if(retorno == 0) {
-            conexaoAberta = 0;
             printf("Conexao fechada com sucesso.\n");
             
-        } else if(retorno == 2) {
+        } else {
             printf("Erro ao fechar a conexao. Codigo: %d\n", retorno);
             
         }
@@ -303,6 +303,10 @@ void exibirMenu(void) {
     printf("10  - Abrir gaveta\n");
     printf("0  - Sair\n");   
     printf("--------------------------------------\n");
+}
+
+void fazerlogin() {
+
 }
 
 /* ===================== Programa principal ===================== */
