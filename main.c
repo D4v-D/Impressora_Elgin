@@ -194,16 +194,14 @@ void abrirConexao(void) {
 }
 
 void fecharConexao(void) {
-    if(conexaoAberta == 1) {
+    if(conexaoAberta) {
 
         int retorno = conexaoAberta = 0;
 
         if(retorno == 0) {
             printf("Conexao fechada com sucesso.\n");
-            
         } else {
             printf("Erro ao fechar a conexao. Codigo: %d\n", retorno);
-            
         }
 
     } else {
@@ -213,14 +211,40 @@ void fecharConexao(void) {
 }
 
 void imprimirTexto(void) {
-   
-}
+   if(!conexaoAberta) {
+        printf("Conexao fechada. Abra a conexao antes (opcao 2).\n");
+        return;
+   }
+    char destino[50];
+    int copias;
 
-void imprimirQRCode(void) {
+    capturarEntrada("Digite o texto desejado:", destino, sizeof(destino));
+    copias = lerInteiro("\nDigite a quantidade de copias: \n");
+
+    for(int i = 1; i < copias; i++) {
+        ImpressaoTexto(destino, 1, 4, 0);
+        Corte(5);
+    }
     
 }
 
+void imprimirQRCode(void) {
+    if(!conexaoAberta) {
+        printf("Conexao fechada. Abra a conexao antes (opcao 2).\n");
+        return;
+    }
+    
+
+}
+
 void imprimirCodigoBarras(void) {
+    if(!conexaoAberta) {
+        printf("Conexao fechada. Abra a conexao antes (opcao 2).\n");
+        return;
+    }
+
+    ImpressaoCodigoBarras(8, "{A012345678912", 100, 2, 3);
+    Corte(5);
     
 }
 
@@ -291,17 +315,17 @@ void exibirMenu(void) {
     printf("**************** MENU IMPRESSORA ****************\n");
     printf("*************************************************\n\n");
 
-    printf("1  - Configurar Conexao\n");
-    printf("2  - Abrir Conexao\n");
-    printf("3  - Fechar Conexao\n");
-    printf("4  - Imprimir Texto\n");
-    printf("5  - Imprimir QR Code\n");
-    printf("6  - Imprimir codigo de barras\n");
-    printf("7  - Imprimir XML SAT\n");
-    printf("8  - Imprimir XML de cancelamento SAT\n");
-    printf("9  - Abrir gaveta (Elgin)\n");
-    printf("10  - Abrir gaveta\n");
-    printf("0  - Sair\n");   
+    printf("1 - Configurar Conexao\n");
+    printf("2 - Abrir Conexao\n");
+    printf("3 - Fechar Conexao\n");
+    printf("4 - Imprimir Texto\n");
+    printf("5 - Imprimir QR Code\n");
+    printf("6 - Imprimir codigo de barras\n");
+    printf("7 - Imprimir XML SAT\n");
+    printf("8 - Imprimir XML de cancelamento SAT\n");
+    printf("9 - Abrir gaveta (Elgin)\n");
+    printf("10 - Abrir gaveta\n");
+    printf("0 - Sair\n");   
     printf("--------------------------------------\n");
 }
 
@@ -324,16 +348,16 @@ int main(void) {
 
         switch (opcao) {
         case 1:
-            configurarConexao();
+            configurarConexao(); //feito
             break;
         case 2:
-            abrirConexao();
+            abrirConexao(); // feito
             break;
         case 3:
-            fecharConexao();
+            fecharConexao(); //feito
             break;
         case 4:
-            imprimirTexto();
+            imprimirTexto(); //feito
             break;
         case 5:
             imprimirQRCode();
@@ -342,10 +366,10 @@ int main(void) {
             imprimirCodigoBarras();
             break;
         case 7:
-            imprimirXMLSAT();
+            imprimirXMLSAT(); //feito
             break;
         case 8:
-            imprimirXMLCancelamentoSAT();
+            imprimirXMLCancelamentoSAT(); //feito
             break;
         case 9:
             abrirGavetaElgin();
