@@ -105,7 +105,7 @@ static int carregarDLL(void) {
 
 /* ===================== Variaveis do programa ===================== */
 
-static int conexaoAberta = 1;       /* 0 = fechada, 1 = aberta */
+static int conexaoAberta = 0;       /* 0 = fechada, 1 = aberta */
 static int tipo = 1;                /* 1 = USB, 2 = Serial, 3 = Rede... */
 static char modelo[50] = "i9";      /* "i8" ou "i9" */
 static char conexao[50] = "USB";
@@ -241,7 +241,15 @@ void imprimirQRCode(void) {
         printf("Conexao fechada. Abra a conexao antes (opcao 2).\n");
         return;
     }
-    
+
+    int retorno = ImpressaoQRCode(ASS_QRCODE, 4, 6);
+    Corte(5);
+
+    if(retorno == 1) {
+        printf("Impressao bem sucedida\n");
+    } else {
+        printf("Erro ao imprimir. Codigo: %d\n", retorno);
+    }
 
 }
 
@@ -251,8 +259,14 @@ void imprimirCodigoBarras(void) {
         return;
     }
 
-    ImpressaoCodigoBarras(8, "{A012345678912", 100, 2, 3);
+    int retorno = ImpressaoCodigoBarras(8, "{A012345678912", 100, 2, 3);
     Corte(5);
+
+    if(retorno == 1) {
+        printf("Impressao bem sucedida\n");
+    } else {
+        printf("Erro ao imprimir. Codigo: %d\n", retorno);
+    }
     
 }
 
@@ -307,15 +321,44 @@ void imprimirXMLCancelamentoSAT(void) {
 }
 
 void abrirGavetaElgin(void) {
-    
+    if(!conexaoAberta) {
+        printf("Conexao fechada. Abra a conexao antes (opcao 2).\n");
+        return;
+    }
+
+    int retorno = AbreGavetaElgin(1, 50, 50);
+
+    if(retorno == 0) {
+        printf("Gaveta Aberta com sucesso\n");
+    } else {
+        printf("Erro ao abrir a gaveta. Codigo: %d\n", retorno);
+    }
 }
 
 void abrirGaveta(void) {
+    if(!conexaoAberta) {
+        printf("Conexao fechada. Abra a conexao antes (opcao 2).\n");
+        return;
+    }
+
+    int retorno = AbreGaveta(1, 5, 50);
+
+    if(retorno == 0) {
+        printf("Gaveta Aberta com sucesso\n");
+    } else {
+        printf("Erro ao abrir a gaveta. Codigo: %d\n", retorno);
+    }
+
     
 }
 
 void emitirSinalSonoro(void) {
-    
+    if(!conexaoAberta) {
+        printf("Conexao fechada. Abra a conexao antes (opcao 2).\n");
+        return;
+    }
+
+    SinalSonoro(4, 50, 5);
 }
 
 void exibirMenu(void) {
@@ -333,11 +376,12 @@ void exibirMenu(void) {
     printf("8 - Imprimir XML de cancelamento SAT\n");
     printf("9 - Abrir gaveta (Elgin)\n");
     printf("10 - Abrir gaveta\n");
+    printf("11 - Sinal sonoro\n");
     printf("0 - Sair\n");   
     printf("--------------------------------------\n");
 }
 
-int fazerlogin(void) {
+int fazerLogin(void) {
     char usuario[50];
     char senha[50];
 
@@ -368,13 +412,16 @@ int fazerlogin(void) {
 /* ===================== Programa principal ===================== */
 
 int main(void) {
-    if (!fazerlogin()) {
-        printf("Programa encerrado por falta de autenticacao.\n");
-        return 0;
-    }
+    
 
     if (!carregarDLL()) {
         printf("Programa encerrado.\n");
+        return 1;
+    }
+
+    if (!fazerLogin()) {
+        printf("Programa encerrado por falta de autenticacao.\n");
+        FreeLibrary(dll);
         return 1;
     }
 
@@ -397,10 +444,10 @@ int main(void) {
             imprimirTexto(); //feito
             break;
         case 5:
-            imprimirQRCode();
+            imprimirQRCode(); //feito  ve se esse lixo ta funcionando
             break;
         case 6:
-            imprimirCodigoBarras();
+            imprimirCodigoBarras(); //feito
             break;
         case 7:
             imprimirXMLSAT(); //feito
@@ -409,10 +456,14 @@ int main(void) {
             imprimirXMLCancelamentoSAT(); //feito
             break;
         case 9:
-            abrirGavetaElgin();
+            abrirGavetaElgin(); //feito  ve se esse lixo ta funcionando
             break;
         case 10:
-            abrirGaveta();
+            abrirGaveta(); //feito  ve se esse lixo ta funcionando
+            break;
+
+        case 11:
+            emitirSinalSonoro(); //feito  ve se esse lixo ta funcionando
             break;
         
         default:
