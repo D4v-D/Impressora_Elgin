@@ -242,7 +242,7 @@ void imprimirQRCode(void) {
         return;
     }
 
-    int retorno = ImpressaoQRCode(ASS_QRCODE, 4, 6);
+    int retorno = ImpressaoQRCode("corinthians campeao", 6, 4);
     Corte(5);
 
     if(retorno == 1) {
