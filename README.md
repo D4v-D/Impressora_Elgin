@@ -42,4 +42,4 @@ Após isso aparecerá o Menu da Impressora, cada opção realiza uma ação espe
 9. Abrir gaveta (Elgin) -- **Abre a gaveta de dinheiro**
 10. Abrir gaveta -- **(Item 9)**
 11. Sinal sonoro -- **Apita a impressora**
-0.  Sair -- **Encerra o programa**
+0. Sair -- **Encerra o programa**
