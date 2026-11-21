@@ -28,7 +28,7 @@ Este projeto foi desevolvido por alunos do curso de Engenahria da Computação c
 
 
 ## Controle - Impressora Elgin i9
-Ao rodar o código "main.c", será necessario fazer login para poder uilizar o programa. Utilize essas credenciais: Usuário: admin;  Senha: 1234.
+Ao rodar o arquivo "main.c", será necessario fazer login para poder uilizar o programa. Utilize essas credenciais: Usuário: admin;  Senha: 1234.
 Após isso aparecerá o Menu da Impressora, cada opção realiza uma ação específica(digite apenas números):
 
 1. Configurar Conexao  -- **Configura o tipo de conexão e os parametros que serão usados**
@@ -42,4 +42,11 @@ Após isso aparecerá o Menu da Impressora, cada opção realiza uma ação espe
 9. Abrir gaveta (Elgin) -- **Abre a gaveta de dinheiro**
 10. Abrir gaveta -- **(Item 9)**
 11. Sinal sonoro -- **Apita a impressora**
-0. Sair -- **Encerra o programa**
+12. Sair -- **Encerra o programa**
+
+## Autores
+- David Lucas Silva de Carvalho
+- João Marcelo
+- Luis Felipe
+- Miguel Tenório de Faria
+
