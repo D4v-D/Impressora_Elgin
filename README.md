@@ -27,7 +27,7 @@ Este projeto foi desevolvido por alunos do curso de Engenahria da Computação c
 3. Clique em **Run Code**
 
 
-## Modo de funcionamento
+## Controle - Impressora Elgin i9
 Ao rodar o código "main.c", será necessario fazer login para poder uilizar o programa. Utilize essas credenciais: Usuário: admin;  Senha: 1234.
 Após isso aparecerá o Menu da Impressora
 
