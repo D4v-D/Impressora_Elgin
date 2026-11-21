@@ -218,11 +218,12 @@ void imprimirTexto(void) {
 
     char texto[200];
 
-    capturarEntrada("Digite o texto desejado:", texto, sizeof(texto));
-    int copias = lerInteiro("\nDigite a quantidade de copias: \n");
+    capturarEntrada("Digite o texto desejado: ", texto, sizeof(texto));
+    int copias = lerInteiro("\nDigite a quantidade de copias: ");
 
     for(int i = 1; i <= copias; i++) {
         int retorno = ImpressaoTexto(texto, 1, 4, 0);
+        printf("%d\n", retorno);
 
         if(retorno >= 0) {
             printf("Copia %d impressa\n", i);
@@ -276,7 +277,7 @@ void imprimirXMLSAT(void) {
         return;
     }
     char *dadosXML = lerArquivo("XMLSAT.xml");
-    if(dadosXML == NULL) { //n encontrou o arquivo -- retorno vazio
+    if(dadosXML == NULL) { //nao encontrou o arquivo -- retorno vazio
         printf("Nao foi possivel ler o XMLSAT.xml\n");
         return;
     }  
@@ -291,7 +292,6 @@ void imprimirXMLSAT(void) {
     }
 
         /* le o arquivo XML (na raiz do projeto) para a memoria */
-        //char *dadosXML = lerArquivo("XMLSAT.xml");
         
 }
 
@@ -316,7 +316,6 @@ void imprimirXMLCancelamentoSAT(void) {
     }
     	
     	/* le o arquivo XML (na raiz do projeto) para a memoria */
-        //char *dadosXML = lerArquivo("CANC_SAT.xml");
         
 }
 
@@ -329,7 +328,7 @@ void abrirGavetaElgin(void) {
     int retorno = AbreGavetaElgin(1, 50, 50);
 
     if(retorno == 0) {
-        printf("Gaveta Aberta com sucesso\n");
+        printf("Gaveta aberta com sucesso\n");
     } else {
         printf("Erro ao abrir a gaveta. Codigo: %d\n", retorno);
     }
@@ -344,7 +343,7 @@ void abrirGaveta(void) {
     int retorno = AbreGaveta(1, 5, 50);
 
     if(retorno == 0) {
-        printf("Gaveta Aberta com sucesso\n");
+        printf("Gaveta aberta com sucesso\n");
     } else {
         printf("Erro ao abrir a gaveta. Codigo: %d\n", retorno);
     }
@@ -377,7 +376,7 @@ void exibirMenu(void) {
     printf("9 - Abrir gaveta (Elgin)\n");
     printf("10 - Abrir gaveta\n");
     printf("11 - Sinal sonoro\n");
-    printf("0 - Sair\n");   
+    printf("12 - Sair\n");   
     printf("--------------------------------------\n");
 }
 
@@ -421,7 +420,7 @@ int main(void) {
 
     if (!fazerLogin()) {
         printf("Programa encerrado por falta de autenticacao.\n");
-        FreeLibrary(dll);
+        FreeLibrary(dll); //apagga a dll da memoria pra liberar espaço
         return 1;
     }
 
@@ -432,39 +431,38 @@ int main(void) {
 
         switch (opcao) {
         case 1:
-            configurarConexao(); //feito
+            configurarConexao(); //ok
             break;
         case 2:
-            abrirConexao(); // feito
+            abrirConexao(); //ok
             break;
         case 3:
-            fecharConexao(); //feito
+            fecharConexao(); //ok
             break;
         case 4:
-            imprimirTexto(); //feito
+            imprimirTexto(); //feito - Sistema de copias com erro
             break;
         case 5:
-            imprimirQRCode(); //feito  ve se esse lixo ta funcionando
+            imprimirQRCode(); //ok
             break;
         case 6:
-            imprimirCodigoBarras(); //feito
+            imprimirCodigoBarras(); //ok
             break;
         case 7:
-            imprimirXMLSAT(); //feito
+            imprimirXMLSAT(); //ok
             break;
         case 8:
-            imprimirXMLCancelamentoSAT(); //feito
+            imprimirXMLCancelamentoSAT(); //ok
             break;
         case 9:
-            abrirGavetaElgin(); //feito  ve se esse lixo ta funcionando
+            abrirGavetaElgin(); //ok
             break;
         case 10:
-            abrirGaveta(); //feito  ve se esse lixo ta funcionando
+            abrirGaveta(); //ok
             break;
 
         case 11:
-            emitirSinalSonoro(); //feito  ve se esse lixo ta funcionando
-            break;
+            emitirSinalSonoro(); //ok
         
         default:
             break;
