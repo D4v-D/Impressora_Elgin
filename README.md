@@ -31,15 +31,15 @@ Este projeto foi desevolvido por alunos do curso de Engenahria da Computação c
 Ao rodar o código "main.c", será necessario fazer login para poder uilizar o programa. Utilize essas credenciais: Usuário: admin;  Senha: 1234.
 Após isso aparecerá o Menu da Impressora
 
-1 - Configurar Conexao  -- Configura o tipo de conexão e os parametros que serão usados
-2 - Abrir Conexao -- Abre a conexão com a impressora
-3 - Fechar Conexao -- Encerra a conexão com a impressora
-4 - Imprimir Texto -- Imprime o texto que o usuário desejar e pergunta a quantidade de cópias
-5 - Imprimir QR Code -- Imprime um QR Code
-6 - Imprimir codigo de barras -- Imprime um Código de Barras
-7 - Imprimir XML SAT -- Imprime o XML SAT
-8 - Imprimir XML de cancelamento SAT -- Imprime o XML SAT de cancelamento
-9 - Abrir gaveta (Elgin) -- Abre a gaveta de dinheiro
-10 - Abrir gaveta -- (Item 9)
-11 - Sinal sonoro -- Apita a impressora
-0 - Sair
+1. Configurar Conexao  -- Configura o tipo de conexão e os parametros que serão usados
+2. Abrir Conexao -- Abre a conexão com a impressora
+3. Fechar Conexao -- Encerra a conexão com a impressora
+4. Imprimir Texto -- Imprime o texto que o usuário desejar e pergunta a quantidade de cópias
+5. Imprimir QR Code -- Imprime um QR Code
+6. Imprimir codigo de barras -- Imprime um Código de Barras
+7. Imprimir XML SAT -- Imprime o XML SAT
+8. Imprimir XML de cancelamento SAT -- Imprime o XML SAT de cancelamento
+9. Abrir gaveta (Elgin) -- Abre a gaveta de dinheiro
+10. Abrir gaveta -- (Item 9)
+11. Sinal sonoro -- Apita a impressora
+0.  Sair
