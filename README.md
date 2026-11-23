@@ -1,7 +1,7 @@
 # Integração C com a Impressora Elgin I9
 
 ## Sobre o projeto
-Este projeto foi desevolvido por alunos do curso de Engenahria da Computação com o objeivo de desevolver uma aplicação C capaz de se comunicar com a impressora Elgin i9
+Este projeto foi desevolvido por alunos do curso de Engenharia da Computação com o objeivo de desevolver uma aplicação C capaz de se comunicar com a impressora Elgin i8/i9
 
 ## Tecnologias utilizadas
 - MinGW 6.3.0
