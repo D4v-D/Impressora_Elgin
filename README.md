@@ -19,7 +19,7 @@ Este projeto foi desevolvido por alunos do curso de Engenahria da Computação c
 ### 2 - Extrair o arquivo ZIP
 1. Vá até o local onde o arquivo foi salvo.
 2. Clique com o botão direito → *Extrair aqui* / *Extract All*.
-3. Será criada uma nova pasta com os arquivos.
+3. Será criada uma nova pasta com os arquivos. (Mantenha todos os arquivos dentro da mesma pasta)
 
 ### 3 - Importar no VSCode (Visual Studio Code)
 1. Clique em *File* → *Open File*
