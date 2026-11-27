@@ -223,17 +223,16 @@ void imprimirTexto(void) {
 
     for(int i = 1; i <= copias; i++) {
         int retorno = ImpressaoTexto(texto, 1, 4, 0);
-        printf("%d\n", retorno);
 
-        if(retorno >= 0) {
+        if(retorno == 0) {
+        	
             printf("Copia %d impressa\n", i);
 
         } else {
             printf("Erro ao imprimir. Codigo: %d\n", retorno);
         }
-        
+       Corte(5);
     }
-    Corte(5);
     
 }
 
